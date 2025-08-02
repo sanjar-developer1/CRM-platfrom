@@ -2,9 +2,9 @@
   <div class="login-wrapper">
     <form action="">
       <p>UserName</p>
-      <input type="text" v-model="usernameInp" />
+      <input type="text" required v-model="usernameInp" />
       <p>Password</p>
-      <input type="text" v-model="passwordInp" />
+      <input type="password" required v-model="passwordInp" />
       <button @click.prevent="login">Submit</button>
     </form>
   </div>
@@ -24,12 +24,21 @@ export default {
   },
   methods: {
     login() {
-      toast.success(`So'rov yuborildi`, {
-        position: "top-center",
-        timeout: 3000,
-        closeOnClick: true,
-        limit: 1,
-      });
+      if (this.usernameInp && this.passwordInp) {
+        toast.success(`So'rov yuborildi`, {
+          position: "top-center",
+          timeout: 3000,
+          closeOnClick: true,
+          limit: 1,
+        });
+      } else {
+        toast.error(`Iltimos ma'lumotlarni to'ldiring`, {
+          position: "top-center",
+          timeout: 3000,
+          closeOnClick: true,
+          limit: 1,
+        });
+      }
     },
   },
 };
